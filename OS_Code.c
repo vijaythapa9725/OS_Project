@@ -6,9 +6,9 @@
 sem_t pen,paper,ques;
 int a,count=0;
 
-void *student1(void *);
-void *student2(void *);
-void *student3(void *);
+void *stud1(void *);
+void *stud2(void *);
+void *stud3(void *);
 
 int main()
 {
@@ -19,9 +19,9 @@ int main()
 	sem_init(&pen,0,0);
 	sem_init(&paper,0,0);
 	sem_init(&ques,0,0);
-	pthread_create(&t1,NULL,student1,NULL);
-	pthread_create(&t2,NULL,student2,NULL);
-	pthread_create(&t3,NULL,student3,NULL);
+	pthread_create(&t1,NULL,stud1,NULL);
+	pthread_create(&t2,NULL,stud2,NULL);
+	pthread_create(&t3,NULL,stud3,NULL);
 	printf("\n\n\t|~>> WELCOME TO EXAMINATION HALL Management System <<~|\n\n");
 	printf("Student 1 with pen || Student 2 with Paper || Student 3 with Ques Paper\n\n");
 	printf("Teacher places-\n1. Paper and Ques\n2. Pen and Ques\n3. Pen and Paper\n\n");
@@ -75,7 +75,7 @@ int main()
 	printf("\n\n\n\t*****THANKS FOR USING OUR SERVICE*****\n\n");
 }
 
-void *student1(void *p)
+void *stud1(void *p)
 {
 	sem_wait(&paper);
 	sem_wait(&ques);
@@ -84,7 +84,7 @@ void *student1(void *p)
 	//sem_post(&ques);
 }
 
-void *student2(void *p)
+void *stud2(void *p)
 {
 	sem_wait(&pen);
 	sem_wait(&ques);
@@ -93,7 +93,7 @@ void *student2(void *p)
 	//sem_post(&ques);
 }
 
-void *student3(void *p)
+void *stud3(void *p)
 {
 	sem_wait(&pen);
 	sem_wait(&paper);
